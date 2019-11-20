@@ -19,18 +19,19 @@ badago x (s:w)
     | x == s        = True
     | otherwise     = badago x w
 
-badago_egoera :: Eq t => [t] -> (a,b,c) -> Bool
+badago_egoera :: Egoerak -> A_trantsizioa -> Bool
 badago_egoera x (a,b,c) = badago a x && badago c x
 
-badago_hitza :: Eq t => [t] -> (a,b,c) -> Bool
-badago_hitza x (a,b,c) = badago b x
+badago_sinbol :: Alfabetoa -> A_trantsizioa -> Bool
+badago_sinbol x (a,b,c) = badago b x
 
-badaude :: Eq t => [t] -> [t] -> [t] -> Bool
-badaude [] [] [] = False
-badaude s z (u:w)
-    | badago_egoera s u && badago_hitza z u = badaude s z w
-    | hutsa_da (u:w)                        = True 
-    | otherwise                             = False 
+badaude :: Egoerak -> Alfabetoa -> A_trantsizioak -> Bool
+badaude s z u
+    | (null s) || (null z)  = False
+    | hutsa_da u    = True 
+    | badago_egoera s (head u) && badago_sinbol z (head u)  = badaude s z (tail u)
+    | otherwise     = False 
+
 --lengoaiakoa_da :: Af -> Hitza -> Bool
 --lengoaiakoa_da af hitza = ...
 --
