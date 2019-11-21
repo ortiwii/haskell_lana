@@ -32,9 +32,12 @@ badaude s z u
     | badago_egoera s (head u) && badago_sinbol z (head u)  = badaude s z (tail u)
     | otherwise     = False 
 
---lengoaiakoa_da :: Af -> Hitza -> Bool
---lengoaiakoa_da af hitza = ...
---
+lengoaiakoa_da :: Af -> Hitza -> Bool
+lengoaiakoa_da (a,b,c,d,e,f) hitza
+    | (null hitza) = True
+    | badago_sinbol b (0,(head hitza),0)	= lengoaiakoa_da (a,b,c,d,e,f) (tail hitza)
+    | otherwise    = False
+
 --sailkatu :: Af -> Af_motak
 --sailkatu af = ...
 --
