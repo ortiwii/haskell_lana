@@ -1,9 +1,5 @@
 import Motak
 
-hutsa_da :: [t] -> Bool
-hutsa_da [] = True
-hutsa_da s = False
-
 af_da :: Af -> Bool
 af_da (a,b,c,d,e,f) = not(errepikatzen_da(a)) && not(errepikatzen_da(b)) && badago e a && badaude a b c
 
@@ -28,18 +24,19 @@ badago_sinbol x (a,b,c) = badago b x
 badaude :: Egoerak -> Alfabetoa -> A_trantsizioak -> Bool
 badaude s z u
     | (null s) || (null z)  = False
-    | hutsa_da u    = True 
+    | (null u)      = True 
     | badago_egoera s (head u) && badago_sinbol z (head u)  = badaude s z (tail u)
     | otherwise     = False 
 
 lengoaiakoa_da :: Af -> Hitza -> Bool
 lengoaiakoa_da (a,b,c,d,e,f) hitza
     | (null hitza) = True
-    | badago_sinbol b (0,(head hitza),0)	= lengoaiakoa_da (a,b,c,d,e,f) (tail hitza)
+    | badago_sinbol b (0,(head hitza),0)    = lengoaiakoa_da (a,b,c,d,e,f) (tail hitza)
     | otherwise    = False
 
 --sailkatu :: Af -> Af_motak
---sailkatu af = ...
+--sailkatu af
+--    | 
 --
 --afed_bat_lortu :: Af -> Af
 --afed_bat_lortu af = ...
