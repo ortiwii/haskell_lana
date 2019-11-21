@@ -1,7 +1,14 @@
 import Motak
 
 af_da :: Af -> Bool
-af_da (a,b,c,d,e,f) = not(errepikatzen_da(a)) && not(errepikatzen_da(b)) && badago e a && badaude a b c
+af_da (a,b,c,d,e,f) 
+	|null(Egoerak)		= error "Egoerak ez daude definituta"
+	|null(Alfabetoa)	= error "Alfabetoa ez dago definituta"
+	|null(A_trantsizioak)	= error "A_trantsizioak ez daude definituta"
+	|null(E_trantsizioak)	= error "E_trantsizioak ez daude definituta" 
+	|null(HasierakoEgoera)	= error "HasierakoEgoera ez dago definituta"
+	|null(AzkenEgoerak)	= error "AzkenEgoerak ez daude definituta"
+	|otherwise		= not(errepikatzen_da(a)) && not(errepikatzen_da(b)) && badago e a && badaude a b c
 
 errepikatzen_da :: Eq t => [t] -> Bool
 errepikatzen_da [] = False

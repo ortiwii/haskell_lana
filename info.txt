@@ -1,0 +1,50 @@
+___
+AF |
+___|
+• e trantsiziorik ez edukitzea.
+• Egoera bakoitzeko eta alfabetoko sinbolo bakoitzeko, zehazki trantsizio bat edukitzea.
+type Af = (Egoerak, Alfabetoa, A_trantsizioak, E_trantsizioak, HasierakoEgoera, AzkenEgoerak)
+- Egoerak : Automata finituko egoera guztiak dituen lista
+ 	Egoeren lista motakoa.
+- Alfabetoa : Automata finituak erabiliko duen letra guztiak dituen lista
+	Sinboloen lista motakoa
+- A_trantsizioak : 1Egoeratik, sinboloa ateratzean 2Egoerara goaz.
+	(1Egoera, Sinboloa, 2Egoera) motako lista.
+- E_trantsizioak : Egoera bakoitzeko nondik nora joan gaitekeen definituta daukan lista.
+	(1Egoera, 2Egoera) motako lista
+- HasierakoEgoera : Hasierako egoera adierazten du
+	Egoera motakoa
+- AzkenEgoerak : 2 zirkulurekin adierazitako egoera finalak adierazten dituen lista.
+	Egoeren lista motakoa
+_____
+AF_DA|
+_____|
+type Af = (Egoerak, Alfabetoa, A_trantsizioak, E_trantsizioak, HasierakoEgoera, AzkenEgoerak)
+- trantsizio bakoitzean egoerak AFari dagokion egoera multzokoak al diren
+- trantsizio ez-huts bakoitzean sinboloa AFari dagokion alfabetokoa al den
+- hasierako egoeraAFari dagokion egoera multzokoa al den
+- trantsizio-diagraman bi zirkuluren bidez nabarmentzen diren egoerez osatutako multzoko egoera guztiak
+ AFari dagokion egoera multzokoak al diren aztertu
+
+
+
+--af_da :: Af -> Bool
+--af_da (Egoerak, Alfabetoa, A_trantsizioak, E_trantsizioak, HasierakoEgoera, AzkenEgoerak)
+--	|null(Egoerak)		= error "Egoerak ez daude definituta"
+--	|null(Alfabetoa)	= error "Alfabetoa ez dago definituta"
+--	|null(A_trantsizioak)	= error "A_trantsizioak ez daude definituta"
+--	|null(E_trantsizioak)	= error "E_trantsizioak ez daude definituta" 
+--	|null(HasierakoEgoera)	= error "HasierakoEgoera ez dago definituta"
+--	|null(AzkenEgoerak)	= error "AzkenEgoerak ez daude definituta"
+--	|otherwise		= not(errepikatzen_da(a)) && not(errepikatzen_da(b)) && badago e a && badaude a b c
+--
+--egoerak_AF_multzokoak:[Egoera] ->Egoera->[Egoera]->Bool
+--egoerak_AF_multzokoak guzt hasEgoera AmaiEgoerak
+--	|null(hasEgoera) || null(AmaiEgoerak)	= error "Zerbait ez duzu ondo definitu"
+--	|otherwise				= (hasEgoera`elem`guzt) && ()
+--
+--errepikatzen_da :: (Eq t) => [t] -> Bool
+--errepikatzen_da [] = False
+--errepikatzen_da (x:s)
+--    | badago x s    = True
+--    | otherwise     = errepikatzen_da s
