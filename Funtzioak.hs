@@ -12,6 +12,7 @@ af_da (a,b,c,d,e,f)
     |null(c)        = error "A_trantsizioak ez daude definituta"
     |null(f)        = error "AzkenEgoerak ez daude definituta"
     |otherwise      = not(errepikatzen_da(a)) && not(errepikatzen_da(b)) && badago e a && badaude a b c && badaude_egoerak a f
+
 errepikatzen_da :: Eq t => [t] -> Bool 
 errepikatzen_da [] = False
 errepikatzen_da (x:s)
