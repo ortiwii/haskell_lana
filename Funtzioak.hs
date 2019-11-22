@@ -1,14 +1,17 @@
 import Motak
+import Adibideak 
+
+hutsa_da :: (Eq t) => [t] -> Bool
+hutsa_da [] = True
+hutsa_da s  = False
 
 af_da :: Af -> Bool
 af_da (a,b,c,d,e,f) 
     |null(a)        = error "Egoerak ez daude definituta"
     |null(b)        = error "Alfabetoa ez dago definituta"
     |null(c)        = error "A_trantsizioak ez daude definituta"
-    |null(d)        = error "E_trantsizioak ez daude definituta" 
     |null(f)        = error "AzkenEgoerak ez daude definituta"
     |otherwise      = not(errepikatzen_da(a)) && not(errepikatzen_da(b)) && badago e a && badaude a b c
-
 errepikatzen_da :: Eq t => [t] -> Bool
 errepikatzen_da [] = False
 errepikatzen_da (x:s)
@@ -42,12 +45,24 @@ hitza_dago(a,b,c,d,e,f) hitza
 
 lengoaiakoa_da :: Af -> Hitza -> Bool
 lengoaiakoa_da (a,b,c,d,e,f) hitza
-    | not(af_da (a,b,c,d,e,f))  = False
-    | not(hitza_dago (a,b,c,d,e,f) hitza)   = False
-    | 
-    | otherwise =
+    |not(af_da (a,b,c,d,e,f))              = False
+    |not(hitza_dago (a,b,c,d,e,f) hitza)   = False
+    |hutsa_da(hitza)                       = error "Hitz huts bat pasatu duzu"
+    |otherwise                             = lengoaiakoa_da_lag (a,b,c,d,e,f) hitza e []
 
-lengoaiakoa_da_lag :: Af -> Hitza -> 
+lengoaiakoa_da_lag :: Af -> Hitza -> Egoera -> [(Egoera, Hitza)] -> Bool
+lengoaiakoa_da_lag (a,b,c,d,e,f) hitza egungoEgoera erregistroa
+    |hutsa_da(hitza) && (badago egungoEgoera f)      = True
+    |hutsa_da(hitza) && not(badago egungoEgoera f)   = False
+    |otherwise                                       = lengoaiakoa_da_lag (a,b,c,d,e,f) (tail hitza) 
+				(get_trantsizioa c egungoEgoera (head hitza)) ((egungoEgoera, hitza):erregistroa)
+
+get_trantsizioa :: A_trantsizioak -> Egoera -> Sinboloa -> Egoera
+get_trantsizioa ((x,y,z):s) egoera sinboloa
+    |null ((x,y,z):s)              = error "Sinboloa ez dago trantsizioen listan"
+    |y == sinboloa && x == egoera  = z
+    |otherwise                     = get_trantsizioa s egoera sinboloa
+
 
 --sailkatu :: Af -> Af_motak
 --sailkatu af
