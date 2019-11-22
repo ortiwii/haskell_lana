@@ -45,10 +45,10 @@ hitza_dago(a,b,c,d,e,f) hitza
 
 lengoaiakoa_da :: Af -> Hitza -> Bool
 lengoaiakoa_da (a,b,c,d,e,f) hitza
-    |not(af_da (a,b,c,d,e,f))              = False
-    |not(hitza_dago (a,b,c,d,e,f) hitza)   = False
-    |hutsa_da(hitza)                       = error "Hitz huts bat pasatu duzu"
-    |otherwise                             = lengoaiakoa_da_lag (a,b,c,d,e,f) hitza e []
+    |not(af_da (a,b,c,d,e,f))              	= False
+    |not(hitza_dago (a,b,c,d,e,f) hitza)   	= False
+    |(null hitza)                       	= error "Hitz huts bat pasatu duzu"
+    |otherwise                             	= lengoaiakoa_da_lag (a,b,c,d,e,f) hitza e []
 
 lengoaiakoa_da_lag :: Af -> Hitza -> Egoera -> [(Egoera, Hitza)] -> Bool
 lengoaiakoa_da_lag (a,b,c,d,e,f) hitza egungoEgoera erregistroa
@@ -62,7 +62,6 @@ get_trantsizioa ((x,y,z):s) egoera sinboloa
     |null ((x,y,z):s)              = error "Sinboloa ez dago trantsizioen listan"
     |y == sinboloa && x == egoera  = z
     |otherwise                     = get_trantsizioa s egoera sinboloa
-
 
 --sailkatu :: Af -> Af_motak
 --sailkatu af
