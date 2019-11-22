@@ -18,7 +18,7 @@ type Af = (Egoerak, Alfabetoa, A_trantsizioak, E_trantsizioak, HasierakoEgoera, 
 	Egoeren lista motakoa
 _____
 AF_DA|
-_____|
+_____|		a	b	 c		   d		   e		   f
 type Af = (Egoerak, Alfabetoa, A_trantsizioak, E_trantsizioak, HasierakoEgoera, AzkenEgoerak)
 - trantsizio bakoitzean egoerak AFari dagokion egoera multzokoak al diren
 - trantsizio ez-huts bakoitzean sinboloa AFari dagokion alfabetokoa al den

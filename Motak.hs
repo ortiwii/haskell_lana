@@ -11,6 +11,6 @@ type E_trantsizioa = (Egoera, Egoera)
 type A_trantsizioak = [A_trantsizioa]
 type E_trantsizioak = [E_trantsizioa]
 type Af = (Egoerak, Alfabetoa, A_trantsizioak, E_trantsizioak, Egoera, Egoerak)
-
+--            a          b          c              d             e         f         --
 data Af_motak = Afd | Afed | E_afed
-		deriving(Eq, Ord, Show, Read, Enum, Bounded)
+        deriving(Eq, Ord, Show, Read, Enum, Bounded)
